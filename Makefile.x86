@@ -1,0 +1,38 @@
+ARCH	= i386
+TARGET	= i686-elf
+KIMG	= y
+
+.PHONY: check
+
+include common.mk
+
+clean:
+	make TARGET=${TARGET} -C ${ARCHDIR} clean
+	make TARGET=${TARGET} -C ${SYSDIR}  clean
+	make TARGET=${TARGET} -C ${LIBDIR}  clean
+
+y: ${ARCH_SRC} ${SYS_OBJ} ${LIB_OBJ} ${LDSCRIPT}
+	make -C ${ARCHDIR} TARGET=${TARGET} build
+	make -C ${SYSDIR}  TARGET=${TARGET} build
+	make -C ${LIBDIR}  TARGET=${TARGET} build
+	${CC} -T ${LDSCRIPT}	\
+		-o y				\
+		-ffreestanding		\
+		-O2					\
+		-nostdlib			\
+		${ARCH_OBJ}			\
+		${SYS_OBJ}			\
+		${LIB_OBJ}			\
+		-lgcc
+
+check: y
+	grub-file --is-x86-multiboot y
+
+y.iso: y
+	mkdir -p isodir/boot/grub
+	cp y isodir/boot/y
+	cp grub.cfg isodir/boot/grub/grub.cfg
+	grub-mkrescue -o y.iso isodir
+
+run-iso: y.iso
+	${QEMU} ${QFLAGS} -cdrom y.iso

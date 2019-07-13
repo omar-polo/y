@@ -1,0 +1,78 @@
+.Dd $Mdocdate: July 12 2019$
+.Dt debug 9
+.Os Y
+.Sh NAME
+.Nm debugf ,
+.Nm vadebug
+.Sh SYNOPSIS
+.In arch/i386/debug.h
+.Ft void
+.Fo debugf
+.Fa "char *fmt"
+.Fa "..."
+.Fc
+.Ft void
+.Fo vadebug
+.Fa "char *fmt"
+.Fa "va_list l"
+.Fc
+.Sh DESCRIPTION
+Little debug function. Logs to the serial port.
+
+.Fn debugf
+behaviour is similar to the
+.Fn printf
+ANSI C function. Every character in
+.Fa fmt
+is printed as-is except for the special sequence "%X" that will consume
+one parameter (except fmt) and print it instead of the sequence. A special
+sequence "%%" doasn't consume any parameter and will print "%". The
+sequence are as follows: (loosely inspired from POSIX ones)
+.Bl -tag
+.It d
+.Vt int32_t
+as decimal
+.It x
+.Vt int32_t
+as hex
+.It hd
+.Vt int16_t
+as decimal
+.It hx
+.Vt int16_t
+as hex
+.It ld
+.Vt int64_t
+as decimal
+.It lx
+.Vt int64_t
+as hex
+.It u
+.Vt uint32_t
+as decimal
+.It X
+.Vt uint32_t
+as hex
+.It hu
+.Vt uint16_t
+as decimal
+.It hX
+.Vt uint16_t
+as hex
+.It lu
+.Vt uint64_t
+as decimal
+.It lX
+.Vt uint64_t
+as hex
+.It c
+.Vt char
+as char
+.It s
+NUL-terminated string
+.El
+
+.Fn vadebug
+is the same except that takes a
+.Vt va_list
+explicitely.

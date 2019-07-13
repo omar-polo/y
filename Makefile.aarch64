@@ -1,0 +1,19 @@
+ARCH	= aarch64
+TARGET	= aarch64-elf
+KIMG	= y.img
+
+include common.mk
+
+clean:
+	make TARGET=${TARGET} -C ${ARCHDIR} clean
+	make TARGET=${TARGET} -C ${SYSDIR}  clean
+	rm -f y.elf y.img
+
+#y.elf: ${ARCH_OBJ} ${SYS_OBJ} ${LDSCRIPT}
+y.elf: ${ARCH_OBJ} ${LDSCRIPT}
+	make -C ${ARCHDIR} TARGET=${TARGET} build
+	#make -C ${SYSDIR}  TARGET=${TARGET} build
+	${CC} -T ${LDSCRIPT} -o y.elf -ffreestanding -O2 -nostdlib ${ARCH_OBJ} -lgcc
+
+y.img: y.elf
+	aarch64-elf-objcopy y.elf -O binary y.img

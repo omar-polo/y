@@ -1,0 +1,34 @@
+ - [x] multiboot
+ - [x] basic terminal handling
+      - [x] newline
+      - [x] scrolling (basic)
+ - [/] serial driver
+      - [x] write
+      - [ ] ...
+ - [/] interrupts
+      - [x] load the gdt
+      - [x] load the idt
+      - [ ] do something more than `ret' when the
+            common interrupt handler is called (e.g.
+            log them at least?)
+      - [ ] we really need the `cli' in the interrupt handlers?
+      - [ ] pushing a byte don't mis-align the stack?
+ - [/] program the PIC
+      - [x] remap the interrupt number
+      - [ ]
+ - [ ] keyboard driver
+ - [ ] 64bit mode
+ - [ ] filesystem
+ - [ ] shell
+ - [ ] editor
+ - [ ] compiler
+ - [ ] bootstrap!
+ 
+eventual:
+ - [ ] ssize_t, or ``How did I get that write with the correct type?''
+ - [ ] aarch64 port
+      - [ ] terminal driver (?)
+      - [ ] bl to kernel_main
+      - [ ] keyboard driver
+ - [x] rearrange folder structure
+ - [ ] APIC instead of PIC (x86)

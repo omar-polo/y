@@ -1,0 +1,37 @@
+.Dd $Mdocdate: July 12 2019$
+.Dt term 9
+.Os Y
+.Sh NAME
+.Nm term_init ,
+.Nm term_write ,
+.Nm term_move_cursor
+.Sh SYNOPSIS
+.In sys/term.h
+.Ft void
+.Fo term_init
+.Fc
+.Ft size_t
+.Fo term_write
+.Fa "void *buf"
+.Fa "size_t len"
+.Fc
+.In arch/i386/term.h
+.Ft void
+.Fo term_move_cursor
+.Fa "uint16_t x"
+.Fa "uint16_t y"
+.Fc
+.Sh DESCRIPTION
+.Fn term_init
+initialize thes screen.  On i386 it means a for-loop that will clear
+every cell of the screen and set a basic color (by default light gray
+on black.)  Then moves the cursor to the upper left corner and exits.
+
+.Fn term_write
+writes to the VGA terminal.  Every character is printed as-is except for
+the line feed '\\n' that means a line break.  Handle a bit of scrolling too.
+
+.Fn term_move_cursor
+moves the cursor to the given position.  Note that this won't change
+the default start position for the next writes.  This function should
+not be called (except in term_write.)
