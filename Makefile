@@ -1,5 +1,7 @@
 ARCH	?= i386
 
+include config.mk
+
 .PHONY: all all_ i386 aarch64
 
 all_: all
@@ -13,7 +15,7 @@ endif
 all: ${KIMG}
 
 i386:
-	make ARCH=i386
+	${MAKE} ARCH=i386
 
 aarch64:
-	make ARCH=aarch64
+	${MAKE} ARCH=aarch64

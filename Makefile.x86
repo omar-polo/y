@@ -7,14 +7,14 @@ KIMG	= y
 include common.mk
 
 clean:
-	make TARGET=${TARGET} -C ${ARCHDIR} clean
-	make TARGET=${TARGET} -C ${SYSDIR}  clean
-	make TARGET=${TARGET} -C ${LIBDIR}  clean
+	${MAKE} TARGET=${TARGET} -C ${ARCHDIR} clean
+	${MAKE} TARGET=${TARGET} -C ${SYSDIR}  clean
+	${MAKE} TARGET=${TARGET} -C ${LIBDIR}  clean
 
 y: ${ARCH_SRC} ${SYS_OBJ} ${LIB_OBJ} ${LDSCRIPT}
-	make -C ${ARCHDIR} TARGET=${TARGET} build
-	make -C ${SYSDIR}  TARGET=${TARGET} build
-	make -C ${LIBDIR}  TARGET=${TARGET} build
+	${MAKE} -C ${ARCHDIR} TARGET=${TARGET} build
+	${MAKE} -C ${SYSDIR}  TARGET=${TARGET} build
+	${MAKE} -C ${LIBDIR}  TARGET=${TARGET} build
 	${CC} -T ${LDSCRIPT}	\
 		-o y				\
 		-ffreestanding		\

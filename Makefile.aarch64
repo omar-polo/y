@@ -5,13 +5,13 @@ KIMG	= y.img
 include common.mk
 
 clean:
-	make TARGET=${TARGET} -C ${ARCHDIR} clean
-	make TARGET=${TARGET} -C ${SYSDIR}  clean
+	${MAKE} TARGET=${TARGET} -C ${ARCHDIR} clean
+	${MAKE} TARGET=${TARGET} -C ${SYSDIR}  clean
 	rm -f y.elf y.img
 
 #y.elf: ${ARCH_OBJ} ${SYS_OBJ} ${LDSCRIPT}
 y.elf: ${ARCH_OBJ} ${LDSCRIPT}
-	make -C ${ARCHDIR} TARGET=${TARGET} build
+	${MAKE} -C ${ARCHDIR} TARGET=${TARGET} build
 	#make -C ${SYSDIR}  TARGET=${TARGET} build
 	${CC} -T ${LDSCRIPT} -o y.elf -ffreestanding -O2 -nostdlib ${ARCH_OBJ} -lgcc
 
