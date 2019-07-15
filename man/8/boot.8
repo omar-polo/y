@@ -1,0 +1,21 @@
+.Dd $Mdocdate: July 15 2019$
+.Dt boot 8
+.Os Y
+.Sh NAME
+.Nm boot
+.Nd describe the boot process
+.Sh DESCRIPTION
+This section will describe the boot process. Each architecture has its
+own boot manpage.
+
+The kernel provides a
+.Fn kernel_main
+function that will assume a certain state of the sistem. It expects,
+for example, that pagination is working properly, and all device-specific
+boot operation has been done.
+
+From there, something should start.
+
+.Sh SEE ALSO
+.Xr boot_i386 8
+.Xr boot_aarch64 8
