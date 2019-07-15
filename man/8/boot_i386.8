@@ -1,0 +1,24 @@
+.Dd $Mdocdate: July 15 2019$
+.Dt boot_i386 8
+.Os Y
+.Sh NAME
+.Nm boot_i386
+.Nd boot process on i386
+.Sh DESCRIPTION
+On i386 the CPU will start in a so-called "real mode", 16bit. We skip
+that step because the kernel follows the multiboot standard and uses an
+external boot loader (GRUB or QEMU loader) to load itself directly in
+protected mode (32 bit). In the future a multiboot-compliant bootloader
+may be developed particularly for this operating system.
+
+The arch/i386/boot.S file contains the initialization step right after
+the kernel it's started. It will setup a bit of stack, so that we can
+call C, and jump to the
+.Fn kinit
+function.
+
+The
+.Fn kinit
+function is defined in arch/i386/kinit.c and it will initialize the
+serial port, load the GDT and IDT, and call the kernel main function
+.Fn kernel_init .
