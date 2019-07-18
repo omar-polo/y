@@ -166,7 +166,7 @@ vafmt(writefn fn, char *fmt, va_list l)
 
 			case 'X':{
 					/*
-					 * int16_t are promoted to int when passed to vaargs
+					 * uint16_t are promoted to int when passed to vaargs
 					 * functions. 
 					 */
 					unsigned int v;
@@ -231,7 +231,7 @@ vafmt(writefn fn, char *fmt, va_list l)
 
 		case 'c':{
 				/*
-				 * char are promoted to int when passed * to vaargs
+				 * char are promoted to int when passed to vaargs
 				 * functions. 
 				 */
 				int v;
