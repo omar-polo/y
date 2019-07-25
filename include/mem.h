@@ -3,6 +3,6 @@
 
 #include <stddef.h>
 
-void *memset(void *b, int c, size_t len);
+void *memset(void *, int, size_t);
 
 #endif
