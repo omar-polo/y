@@ -1,0 +1,32 @@
+.Dd $Mdocdate: July 25 2019$
+.Dt memset 3
+.Os Y
+.Sh NAME
+.Nm memset
+.Sh SYNOPSIS
+.In mem.h
+.Ft "void *"
+.Fo memset
+.Fa "void *b"
+.Fa "int c"
+.Fa "size_t len"
+.Fc
+.Sh DESCRIPTION
+The
+.Fn memset
+function writes
+.Fa len
+bytes of
+.Fa c
+converted to
+.Vt unsigned char
+to the address pointed by
+.Fa b .
+
+The functions return the initial value of
+.Fa b .
+.Sh HISTORY
+The
+.Fn memset
+function  first appeared in AT&T System V UNIX and was reimplemented
+for 4.3BSD-Tahoe. Then was reimplemented for Y 0.1.
