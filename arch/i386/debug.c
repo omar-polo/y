@@ -4,8 +4,6 @@
 
 #include <fmt.h>
 
-#include <string.h>
-
 void
 debugf(char *fmt, ...)
 {
@@ -23,6 +21,3 @@ vadebug(char *fmt, va_list l)
 {
 	vafmt(serial_write, fmt, l);
 }
-
-#undef DECFMT
-#undef HEXFMT
