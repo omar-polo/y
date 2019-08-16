@@ -8,12 +8,12 @@ When it'll be capable of doing *something*, I'll update this doc.
 deps:
 
  - freestanding GCC + binutils for i386 somewhere in $PATH (see [here](https://wiki.osdev.org/GCC_Cross-Compiler))
- - qemu (with i386 emulation enabled)
+ - qemu (with i386 emulation enabled) or bochs (or both)
  - GNU make: sorry for this. I'm working on a linux env atm and I cannot
  find a copy of OpenBSD make to run. I also needed `include`s and `if`s.
- - grub if you want a bootable ISO
+ - grub if you want a bootable ISO. Depending on the OS you may need to install also xorriso and mtools
 
-At the moment it only works (for some definition of the world) on i386.
+At the moment it only works (for some definition of the word) on i386.
 
 	make run
 
