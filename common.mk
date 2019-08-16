@@ -23,3 +23,6 @@ include lib/config.mk
 
 run: y
 	${QEMU} ${QFLAGS} -kernel ${KIMG}
+
+runb: y.iso
+	${BOCHS} -f bochsrc.txt -q
