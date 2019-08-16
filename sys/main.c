@@ -7,7 +7,9 @@ void
 kernel_main(void)
 {
 	/* this should NOT triple fault and reset */
-	__asm__("int $0x3");
+	__asm__("int $0x6");
+	__asm__("int $0x2");
+	__asm__("int $0x0");
 
 	/* test serial */
 	serial_write("hello, serial!\n", 15);
@@ -18,7 +20,6 @@ kernel_main(void)
 
 	/* try the debug facilities */
 	debugf("my fav number is %u\n", 0xCAFEF00D);
-	debugf("my other fav number is %d\n", 42);
-	debugf("here's a string: \"%s\"\n", "hi!");
-	debugf("EOT\n");
+
+	debugf("goodbye");
 }
