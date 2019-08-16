@@ -3,8 +3,11 @@
 
 #include <stdint.h>
 
-void	gdt_flush(uint32_t);
+#include "gdt.h"
+#include "idt.h"
 
-void	idt_flush(uint32_t);
+void gdt_flush(struct gdt *);
+
+void idt_flush(struct idt *);
 
 #endif
