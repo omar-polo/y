@@ -1,11 +1,6 @@
 #ifndef I386_INTERRUPT_H
 #define I386_INTERRUPT_H
 
-/*
-	for (i in `{seq 0 31})
-		echo void isr$i'();'
- */
-
 /* In reality, some of these function (isr8, 10-14 inclusive)
  * takes parameters.  But, since are definied in assembly and
  * we need the prototype only for C type checking (to get the
